@@ -55,7 +55,7 @@ public class CACMIndexer implements ParserListener {
         if (!authors.isEmpty()) {
             String[] authorArray = authors.split(";");
             for (String s : authorArray) {
-                doc.add(new StringField("author", s, Field.Store.YES));
+                doc.add(new StringField("authors", s, Field.Store.YES));
             }
         }
         doc.add(new TextField("title", title, Field.Store.YES));
@@ -63,7 +63,6 @@ public class CACMIndexer implements ParserListener {
         if (summary != null) {
             FieldType summaryFieldType= new FieldType();
             summaryFieldType.setStoreTermVectors(true);
-
             summaryFieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
             doc.add(new Field("summary", summary,summaryFieldType));
         }
